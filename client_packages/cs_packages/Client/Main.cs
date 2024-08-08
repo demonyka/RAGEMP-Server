@@ -4,11 +4,30 @@ using RAGE.Ui;
 
 public class Main : Events.Script
 {
+    HtmlWindow openedWindow;
+
     public Main()
     {
         Events.OnPlayerReady += OnPlayerReady;
         Events.OnPlayerSpawn += OnPlayerSpawn;
         Events.OnPlayerCreateWaypoint += OnPlayerCreateWaypoint;
+        Events.Add("closeBrowser", onCloseBrowserMessage);
+        Events.Add("CEF:CLIENT::REGISTER_BUTTON_CLICKED", OnCefRegisterButtonClicked);
+    }
+
+    public void OnCefRegisterButtonClicked(object[] args)
+    {
+        string login = args[0].ToString();
+        string password = args[1].ToString();
+        string email = args[2].ToString();
+        
+        Events.CallRemote("CLIENT:SERVER::REGISTER_BUTTON_CLICKED", login, password, email);
+    }
+
+    public void onCloseBrowserMessage(object[] args)
+    {
+        openedWindow.Destroy();
+        Cursor.ShowCursor(false, false);
     }
 
     public void OnPlayerReady()
@@ -18,8 +37,8 @@ public class Main : Events.Script
 
     public void OnPlayerSpawn(Events.CancelEventArgs cancel)
     {
-        HtmlWindow htmlWindow = new HtmlWindow("package://cef/auth/register.html");
-        htmlWindow.Active = true;
+        openedWindow = new HtmlWindow("package://cef/auth/index.html");
+        openedWindow.Active = true;
         Cursor.ShowCursor(true, true);
     }
 

@@ -784,3 +784,304 @@ MySql.Data.MySqlClient.MySqlException (0x80004005): Unable to connect to any of 
    at async Task<Driver> MySql.Data.MySqlClient.MySqlPool.CreateNewPooledConnectionAsync(bool execAsync, CancellationToken cancellationToken)
    at async Task<Driver> MySql.Data.MySqlClient.MySqlPool.GetPooledConnectionAsync(bool execAsync, CancellationToken cancellationToken)
    at async
+==================[08.08.2024 6:37:49]==================
+System.IO.FileNotFoundException: Could not load file or assembly 'C:\RAGEMP\server-files\dotnet\resources\Server\Debug\netcoreapp3.1\MySql.Data.resources.dll'. Не удается найти указанный файл.
+File name: 'C:\RAGEMP\server-files\dotnet\resources\Server\Debug\netcoreapp3.1\MySql.Data.resources.dll'
+   at void System.Runtime.Loader.AssemblyLoadContext.LoadFromPath(IntPtr ptrNativeAssemblyLoadContext, string ilPath, string niPath, ObjectHandleOnStack retAssembly)
+
+
+=========================================================
+
+==================[08.08.2024 6:37:49]==================
+System.IO.FileNotFoundException: Could not load file or assembly 'C:\RAGEMP\server-files\dotnet\resources\Server\Debug\netcoreapp3.1\MySql.Data.resources.dll'. Не удается найти указанный файл.
+File name: 'C:\RAGEMP\server-files\dotnet\resources\Server\Debug\netcoreapp3.1\MySql.Data.resources.dll'
+   at void System.Runtime.Loader.AssemblyLoadContext.LoadFromPath(IntPtr ptrNativeAssemblyLoadContext, string ilPath, string niPath, ObjectHandleOnStack retAssembly)
+
+
+=========================================================
+
+==================[08.08.2024 6:37:49]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): Parameter '@email' must be defined.
+   at async Task<bool> MySql.Data.MySqlClient.Statement.SerializeParameterAsync(MySqlParameterCollection parameters, MySqlPacket packet, string parmName, int parameterIndex, bool execAsync)
+=========================================================
+
+==================[08.08.2024 6:37:49]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): Parameter '@email' must be defined.
+   at async Task<bool> MySql.Data.MySqlClient.Statement.SerializeParameterAsync(MySqlParameterCollection parameters, MySqlPacket packet, string parmName, int parameterIndex, bool execAsync)
+   at void System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+=========================================================
+
+==================[08.08.2024 6:37:49]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): Parameter '@email' must be defined.
+   at async Task<bool> MySql.Data.MySqlClient.Statement.SerializeParameterAsync(MySqlParameterCollection parameters, MySqlPacket packet, string parmName, int parameterIndex, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.InternalBindParametersAsync(string sql, MySqlParameterCollection parameters, MySqlPacket packet, bool execAsync)
+   at void System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+=========================================================
+
+==================[08.08.2024 6:37:49]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): Parameter '@email' must be defined.
+   at async Task<bool> MySql.Data.MySqlClient.Statement.SerializeParameterAsync(MySqlParameterCollection parameters, MySqlPacket packet, string parmName, int parameterIndex, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.InternalBindParametersAsync(string sql, MySqlParameterCollection parameters, MySqlPacket packet, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.BindParametersAsync(bool execAsync)
+   at void System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+=========================================================
+
+==================[08.08.2024 6:37:49]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): Parameter '@email' must be defined.
+   at async Task<bool> MySql.Data.MySqlClient.Statement.SerializeParameterAsync(MySqlParameterCollection parameters, MySqlPacket packet, string parmName, int parameterIndex, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.InternalBindParametersAsync(string sql, MySqlParameterCollection parameters, MySqlPacket packet, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.BindParametersAsync(bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.ExecuteAsync(bool execAsync)
+   at void System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+=========================================================
+
+==================[08.08.2024 6:37:49]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): Parameter '@email' must be defined.
+   at async Task<bool> MySql.Data.MySqlClient.Statement.SerializeParameterAsync(MySqlParameterCollection parameters, MySqlPacket packet, string parmName, int parameterIndex, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.InternalBindParametersAsync(string sql, MySqlParameterCollection parameters, MySqlPacket packet, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.BindParametersAsync(bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.ExecuteAsync(bool execAsync)
+   at async Task MySql.Data.MySqlClient.PreparableStatement.ExecuteAsync(bool execAsync)
+   at void System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+=========================================================
+
+==================[08.08.2024 6:37:49]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): Fatal error encountered during command execution.
+ ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Parameter '@email' must be defined.
+   at async Task<bool> MySql.Data.MySqlClient.Statement.SerializeParameterAsync(MySqlParameterCollection parameters, MySqlPacket packet, string parmName, int parameterIndex, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.InternalBindParametersAsync(string sql, MySqlParameterCollection parameters, MySqlPacket packet, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.BindParametersAsync(bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.ExecuteAsync(bool execAsync)
+   at async Task MySql.Data.MySqlClient.PreparableStatement.ExecuteAsync(bool execAsync)
+   at async Task<MySqlDataReader> MySql.Data.MySqlClient.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, bool execAsync, CancellationToken cancellationToken)
+   at async Task<MySqlDataReader> MySql.Data.MySqlClient.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, bool execAsync, CancellationToken cancellationToken)
+=========================================================
+
+==================[08.08.2024 6:37:49]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): Fatal error encountered during command execution.
+ ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Parameter '@email' must be defined.
+   at async Task<bool> MySql.Data.MySqlClient.Statement.SerializeParameterAsync(MySqlParameterCollection parameters, MySqlPacket packet, string parmName, int parameterIndex, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.InternalBindParametersAsync(string sql, MySqlParameterCollection parameters, MySqlPacket packet, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.BindParametersAsync(bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.ExecuteAsync(bool execAsync)
+   at async Task MySql.Data.MySqlClient.PreparableStatement.ExecuteAsync(bool execAsync)
+   at async Task<MySqlDataReader> MySql.Data.MySqlClient.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, bool execAsync, CancellationToken cancellationToken)
+   at async Task<MySqlDataReader> MySql.Data.MySqlClient.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, bool execAsync, CancellationToken cancellationToken)
+   at void System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+=========================================================
+
+==================[08.08.2024 6:37:49]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): Fatal error encountered during command execution.
+ ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Parameter '@email' must be defined.
+   at async Task<bool> MySql.Data.MySqlClient.Statement.SerializeParameterAsync(MySqlParameterCollection parameters, MySqlPacket packet, string parmName, int parameterIndex, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.InternalBindParametersAsync(string sql, MySqlParameterCollection parameters, MySqlPacket packet, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.BindParametersAsync(bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.ExecuteAsync(bool execAsync)
+   at async Task MySql.Data.MySqlClient.PreparableStatement.ExecuteAsync(bool execAsync)
+   at async Task<MySqlDataReader> MySql.Data.MySqlClient.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, bool execAsync, CancellationToken cancellationToken)
+   at async Task<MySqlDataReader> MySql.Data.MySqlClient.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, bool execAsync, CancellationToken cancellationToken)
+   at async Task<MySqlDataReader> MySql.Data.MySqlClient.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, bool execAsync, CancellationToken cancellationToken)
+   at void System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+=========================================================
+
+==================[08.08.2024 6:37:49]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): Fatal error encountered during command execution.
+ ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Parameter '@email' must be defined.
+   at async Task<bool> MySql.Data.MySqlClient.Statement.SerializeParameterAsync(MySqlParameterCollection parameters, MySqlPacket packet, string parmName, int parameterIndex, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.InternalBindParametersAsync(string sql, MySqlParameterCollection parameters, MySqlPacket packet, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.BindParametersAsync(bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.ExecuteAsync(bool execAsync)
+   at async Task MySql.Data.MySqlClient.PreparableStatement.ExecuteAsync(bool execAsync)
+   at async Task<MySqlDataReader> MySql.Data.MySqlClient.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, bool execAsync, CancellationToken cancellationToken)
+   at async Task<MySqlDataReader> MySql.Data.MySqlClient.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, bool execAsync, CancellationToken cancellationToken)
+   at async Task<MySqlDataReader> MySql.Data.MySqlClient.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, bool execAsync, CancellationToken cancellationToken)
+   at async Task<int> MySql.Data.MySqlClient.MySqlCommand.ExecuteNonQueryAsync(bool execAsync, CancellationToken cancellationToken)
+   at void System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+=========================================================
+
+==================[08.08.2024 6:38:02]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): Parameter '@email' must be defined.
+   at async Task<bool> MySql.Data.MySqlClient.Statement.SerializeParameterAsync(MySqlParameterCollection parameters, MySqlPacket packet, string parmName, int parameterIndex, bool execAsync)
+=========================================================
+
+==================[08.08.2024 6:38:02]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): Parameter '@email' must be defined.
+   at async Task<bool> MySql.Data.MySqlClient.Statement.SerializeParameterAsync(MySqlParameterCollection parameters, MySqlPacket packet, string parmName, int parameterIndex, bool execAsync)
+   at void System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+=========================================================
+
+==================[08.08.2024 6:38:02]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): Parameter '@email' must be defined.
+   at async Task<bool> MySql.Data.MySqlClient.Statement.SerializeParameterAsync(MySqlParameterCollection parameters, MySqlPacket packet, string parmName, int parameterIndex, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.InternalBindParametersAsync(string sql, MySqlParameterCollection parameters, MySqlPacket packet, bool execAsync)
+   at void System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+=========================================================
+
+==================[08.08.2024 6:38:02]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): Parameter '@email' must be defined.
+   at async Task<bool> MySql.Data.MySqlClient.Statement.SerializeParameterAsync(MySqlParameterCollection parameters, MySqlPacket packet, string parmName, int parameterIndex, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.InternalBindParametersAsync(string sql, MySqlParameterCollection parameters, MySqlPacket packet, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.BindParametersAsync(bool execAsync)
+   at void System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+=========================================================
+
+==================[08.08.2024 6:38:02]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): Parameter '@email' must be defined.
+   at async Task<bool> MySql.Data.MySqlClient.Statement.SerializeParameterAsync(MySqlParameterCollection parameters, MySqlPacket packet, string parmName, int parameterIndex, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.InternalBindParametersAsync(string sql, MySqlParameterCollection parameters, MySqlPacket packet, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.BindParametersAsync(bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.ExecuteAsync(bool execAsync)
+   at void System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+=========================================================
+
+==================[08.08.2024 6:38:02]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): Parameter '@email' must be defined.
+   at async Task<bool> MySql.Data.MySqlClient.Statement.SerializeParameterAsync(MySqlParameterCollection parameters, MySqlPacket packet, string parmName, int parameterIndex, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.InternalBindParametersAsync(string sql, MySqlParameterCollection parameters, MySqlPacket packet, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.BindParametersAsync(bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.ExecuteAsync(bool execAsync)
+   at async Task MySql.Data.MySqlClient.PreparableStatement.ExecuteAsync(bool execAsync)
+   at void System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+=========================================================
+
+==================[08.08.2024 6:38:02]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): Fatal error encountered during command execution.
+ ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Parameter '@email' must be defined.
+   at async Task<bool> MySql.Data.MySqlClient.Statement.SerializeParameterAsync(MySqlParameterCollection parameters, MySqlPacket packet, string parmName, int parameterIndex, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.InternalBindParametersAsync(string sql, MySqlParameterCollection parameters, MySqlPacket packet, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.BindParametersAsync(bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.ExecuteAsync(bool execAsync)
+   at async Task MySql.Data.MySqlClient.PreparableStatement.ExecuteAsync(bool execAsync)
+   at async Task<MySqlDataReader> MySql.Data.MySqlClient.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, bool execAsync, CancellationToken cancellationToken)
+   at async Task<MySqlDataReader> MySql.Data.MySqlClient.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, bool execAsync, CancellationToken cancellationToken)
+=========================================================
+
+==================[08.08.2024 6:38:02]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): Fatal error encountered during command execution.
+ ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Parameter '@email' must be defined.
+   at async Task<bool> MySql.Data.MySqlClient.Statement.SerializeParameterAsync(MySqlParameterCollection parameters, MySqlPacket packet, string parmName, int parameterIndex, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.InternalBindParametersAsync(string sql, MySqlParameterCollection parameters, MySqlPacket packet, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.BindParametersAsync(bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.ExecuteAsync(bool execAsync)
+   at async Task MySql.Data.MySqlClient.PreparableStatement.ExecuteAsync(bool execAsync)
+   at async Task<MySqlDataReader> MySql.Data.MySqlClient.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, bool execAsync, CancellationToken cancellationToken)
+   at async Task<MySqlDataReader> MySql.Data.MySqlClient.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, bool execAsync, CancellationToken cancellationToken)
+   at void System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+=========================================================
+
+==================[08.08.2024 6:38:02]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): Fatal error encountered during command execution.
+ ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Parameter '@email' must be defined.
+   at async Task<bool> MySql.Data.MySqlClient.Statement.SerializeParameterAsync(MySqlParameterCollection parameters, MySqlPacket packet, string parmName, int parameterIndex, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.InternalBindParametersAsync(string sql, MySqlParameterCollection parameters, MySqlPacket packet, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.BindParametersAsync(bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.ExecuteAsync(bool execAsync)
+   at async Task MySql.Data.MySqlClient.PreparableStatement.ExecuteAsync(bool execAsync)
+   at async Task<MySqlDataReader> MySql.Data.MySqlClient.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, bool execAsync, CancellationToken cancellationToken)
+   at async Task<MySqlDataReader> MySql.Data.MySqlClient.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, bool execAsync, CancellationToken cancellationToken)
+   at async Task<MySqlDataReader> MySql.Data.MySqlClient.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, bool execAsync, CancellationToken cancellationToken)
+   at void System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+=========================================================
+
+==================[08.08.2024 6:38:02]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): Fatal error encountered during command execution.
+ ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Parameter '@email' must be defined.
+   at async Task<bool> MySql.Data.MySqlClient.Statement.SerializeParameterAsync(MySqlParameterCollection parameters, MySqlPacket packet, string parmName, int parameterIndex, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.InternalBindParametersAsync(string sql, MySqlParameterCollection parameters, MySqlPacket packet, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.BindParametersAsync(bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.ExecuteAsync(bool execAsync)
+   at async Task MySql.Data.MySqlClient.PreparableStatement.ExecuteAsync(bool execAsync)
+   at async Task<MySqlDataReader> MySql.Data.MySqlClient.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, bool execAsync, CancellationToken cancellationToken)
+   at async Task<MySqlDataReader> MySql.Data.MySqlClient.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, bool execAsync, CancellationToken cancellationToken)
+   at async Task<MySqlDataReader> MySql.Data.MySqlClient.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, bool execAsync, CancellationToken cancellationToken)
+   at async Task<int> MySql.Data.MySqlClient.MySqlCommand.ExecuteNonQueryAsync(bool execAsync, CancellationToken 
+==================[08.08.2024 6:41:54]==================
+System.IO.FileNotFoundException: Could not load file or assembly 'C:\RAGEMP\server-files\dotnet\resources\Server\Debug\netcoreapp3.1\MySql.Data.resources.dll'. Не удается найти указанный файл.
+File name: 'C:\RAGEMP\server-files\dotnet\resources\Server\Debug\netcoreapp3.1\MySql.Data.resources.dll'
+   at void System.Runtime.Loader.AssemblyLoadContext.LoadFromPath(IntPtr ptrNativeAssemblyLoadContext, string ilPath, string niPath, ObjectHandleOnStack retAssembly)
+
+
+=========================================================
+
+==================[08.08.2024 6:41:54]==================
+System.IO.FileNotFoundException: Could not load file or assembly 'C:\RAGEMP\server-files\dotnet\resources\Server\Debug\netcoreapp3.1\MySql.Data.resources.dll'. Не удается найти указанный файл.
+File name: 'C:\RAGEMP\server-files\dotnet\resources\Server\Debug\netcoreapp3.1\MySql.Data.resources.dll'
+   at void System.Runtime.Loader.AssemblyLoadContext.LoadFromPath(IntPtr ptrNativeAssemblyLoadContext, string ilPath, string niPath, ObjectHandleOnStack retAssembly)
+
+
+=========================================================
+
+==================[08.08.2024 6:41:54]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): Parameter '@email' must be defined.
+   at async Task<bool> MySql.Data.MySqlClient.Statement.SerializeParameterAsync(MySqlParameterCollection parameters, MySqlPacket packet, string parmName, int parameterIndex, bool execAsync)
+=========================================================
+
+==================[08.08.2024 6:41:54]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): Parameter '@email' must be defined.
+   at async Task<bool> MySql.Data.MySqlClient.Statement.SerializeParameterAsync(MySqlParameterCollection parameters, MySqlPacket packet, string parmName, int parameterIndex, bool execAsync)
+   at void System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+=========================================================
+
+==================[08.08.2024 6:41:54]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): Parameter '@email' must be defined.
+   at async Task<bool> MySql.Data.MySqlClient.Statement.SerializeParameterAsync(MySqlParameterCollection parameters, MySqlPacket packet, string parmName, int parameterIndex, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.InternalBindParametersAsync(string sql, MySqlParameterCollection parameters, MySqlPacket packet, bool execAsync)
+   at void System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+=========================================================
+
+==================[08.08.2024 6:41:54]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): Parameter '@email' must be defined.
+   at async Task<bool> MySql.Data.MySqlClient.Statement.SerializeParameterAsync(MySqlParameterCollection parameters, MySqlPacket packet, string parmName, int parameterIndex, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.InternalBindParametersAsync(string sql, MySqlParameterCollection parameters, MySqlPacket packet, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.BindParametersAsync(bool execAsync)
+   at void System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+=========================================================
+
+==================[08.08.2024 6:41:54]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): Parameter '@email' must be defined.
+   at async Task<bool> MySql.Data.MySqlClient.Statement.SerializeParameterAsync(MySqlParameterCollection parameters, MySqlPacket packet, string parmName, int parameterIndex, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.InternalBindParametersAsync(string sql, MySqlParameterCollection parameters, MySqlPacket packet, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.BindParametersAsync(bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.ExecuteAsync(bool execAsync)
+   at void System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+=========================================================
+
+==================[08.08.2024 6:41:54]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): Parameter '@email' must be defined.
+   at async Task<bool> MySql.Data.MySqlClient.Statement.SerializeParameterAsync(MySqlParameterCollection parameters, MySqlPacket packet, string parmName, int parameterIndex, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.InternalBindParametersAsync(string sql, MySqlParameterCollection parameters, MySqlPacket packet, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.BindParametersAsync(bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.ExecuteAsync(bool execAsync)
+   at async Task MySql.Data.MySqlClient.PreparableStatement.ExecuteAsync(bool execAsync)
+   at void System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+=========================================================
+
+==================[08.08.2024 6:41:54]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): Fatal error encountered during command execution.
+ ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Parameter '@email' must be defined.
+   at async Task<bool> MySql.Data.MySqlClient.Statement.SerializeParameterAsync(MySqlParameterCollection parameters, MySqlPacket packet, string parmName, int parameterIndex, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.InternalBindParametersAsync(string sql, MySqlParameterCollection parameters, MySqlPacket packet, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.BindParametersAsync(bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.ExecuteAsync(bool execAsync)
+   at async Task MySql.Data.MySqlClient.PreparableStatement.ExecuteAsync(bool execAsync)
+   at async Task<MySqlDataReader> MySql.Data.MySqlClient.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, bool execAsync, CancellationToken cancellationToken)
+   at async Task<MySqlDataReader> MySql.Data.MySqlClient.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, bool execAsync, CancellationToken cancellationToken)
+=========================================================
+
+==================[08.08.2024 6:41:54]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): Fatal error encountered during command execution.
+ ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Parameter '@email' must be defined.
+   at async Task<bool> MySql.Data.MySqlClient.Statement.SerializeParameterAsync(MySqlParameterCollection parameters, MySqlPacket packet, string parmName, int parameterIndex, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.InternalBindParametersAsync(string sql, MySqlParameterCollection parameters, MySqlPacket packet, bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.BindParametersAsync(bool execAsync)
+   at async Task MySql.Data.MySqlClient.Statement.ExecuteAsync(bool execAsync)
+   at async Task MySql.Data.MySqlClient.PreparableStatement.ExecuteAsync(bool execAsync)
+   at async Task<MySqlDataReader> MySql.Data.MySqlClient.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, bool execAsync, CancellationToken cancellationToken)
+   at async Task<MySqlDataReader> MySql.Data.MySqlClient.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, bool execAsync, CancellationToken cancellationToken)
+   at void System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+=========================================================
+
+==================[08.08.2024 6:41:54]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): Fatal error encountered during command execution.
+ ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Parameter '@email' must be defined.
+   at async Task<bool> MySql.Data.MySqlClient.Statement.SerializeParameterAsync(MySqlParameterCollection parameters, MySqlPacket packet, string parmName, i

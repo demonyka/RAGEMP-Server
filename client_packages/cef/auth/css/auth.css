@@ -51,6 +51,12 @@
     overflow: hidden;
     z-index: 1;
   }
+  .parallelogram.left {
+    left: 0;
+  }
+  .parallelogram.right {
+    right: -10%;
+  }
   .character {
     position: absolute;
     z-index: 100;
@@ -122,4 +128,17 @@
   }
   form.auth button:hover {
     opacity: .8;
+  }
+  @media (max-width: 1500px) {
+    .parallelogram {
+      width: 350px;
+    }
+    .parallelogram.right {
+      right: -15%;
+    }
+    .character {
+      width: 500px;
+      height: 700px;
+      left: -50px;
+    }
   }

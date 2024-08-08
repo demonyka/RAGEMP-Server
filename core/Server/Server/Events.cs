@@ -31,7 +31,8 @@ public class Events : Script
     [ServerEvent(Event.PlayerSpawn)]
     public void OnPlayerSpawn(Player player)
     {
-        player.Position = new Vector3(45.231644, 7463.833, 6.065506);
+        player.Position = new Vector3(-1851.4647, -1233.4248, 13.016661);
+        player.Rotation = new Vector3(0, 0, 138.50723);
         player.Dimension = (uint)(player.Id + 1000);
     }
 }

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/auth.css">
+        <title>CEF | REGISTER</title>
+    </head>
+    <body>
+        <div class="character"></div>
+        <div class="parallelogram left"></div>
+        <div class="parallelogram right"></div>
+        <div class="content">
+            <h1 style="display: flex; position: relative;">Los-Santos<span style="font-size: 14px; position: absolute; left: 100%;">RP</span></h1>
+            <div class="auth-buttons">
+                <button id="login-btn" class="active">Авторизация</button>
+                <button id="reg-btn">Регистрация</button>
+            </div>
+            <form id="login-form" class="auth" style="display: flex;">
+                <input name="login" placeholder="Логин">
+                <input name="password" placeholder="Пароль" type="password">
+                <button onclick="onLoginButtonClick()" type="button">Войти</button>
+            </form>
+            <form id="reg-form" class="auth" style="display: none;">
+                <input name="login" placeholder="Логин">
+                <input name="email" placeholder="Почта">
+                <input name="password" placeholder="Пароль" type="password">
+                <input name="password-confirmation" placeholder="Подтверждение пароля" type="password">
+                <button onclick="onRegisterButtonClick()" type="button">Зарегистрироваться</button>
+            </form>
+        </div>
+        <script src="js/script.js"></script>
+        <script>
+            document.getElementById('login-btn').addEventListener('click', function() {
+                document.getElementById('login-form').style.display = 'flex';
+                document.getElementById('reg-form').style.display = 'none';
+                this.classList.add('active');
+                document.getElementById('reg-btn').classList.remove('active');
+            });
+
+            document.getElementById('reg-btn').addEventListener('click', function() {
+                document.getElementById('login-form').style.display = 'none';
+                document.getElementById('reg-form').style.display = 'flex';
+                this.classList.add('active');
+                document.getElementById('login-btn').classList.remove('active');
+            });
+
+            function onLoginButtonClick() {
+                mp.trigger('closeBrowser');
+            }
+            function onRegisterButtonClick() {
+                const form = document.getElementById('reg-form');
+                const loginValue = form.elements['login'].value;
+                const passwordValue = form.elements['password'].value;
+                const passwordConfirmationValue = form.elements['password-confirmation'].value;
+                const emailValue = form.elements['email'].value;
+
+                const loginPattern = /^[a-zA-Z0-9]{4,24}$/;
+                if(!loginValue.match(loginPattern)) return;
+
+                const passwordPattern = /^[a-zA-Z0-9]{6,64}$/;
+                if(!passwordValue.match(passwordPattern)) return;
+
+                if(passwordValue !== passwordConfirmationValue) return;
+
+                // const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+                // if(!emailValue.match(emailPattern)) return;
+
+                mp.trigger('CEF:CLIENT::REGISTER_BUTTON_CLICKED', loginValue, passwordValue, emailValue);
+            }
+        </script>
+    </body>
+</html>
