@@ -1,0 +1,5 @@
+is_global = true
+build_property.RootNamespace = Client
+build_property.ProjectDir = C:\RAGEMP\server-files\client_packages\cs_packages\Client\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 

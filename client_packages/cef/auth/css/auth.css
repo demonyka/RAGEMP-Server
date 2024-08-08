@@ -1,0 +1,125 @@
+  @font-face {
+    font-family: "Unbounded"; 
+    src: url("../fonts/Unbounded.ttf") format("truetype"); 
+    font-style: normal; 
+    font-weight: normal; 
+  } 
+  * {
+    font-family: 'Unbounded', sans-serif;
+    color: white;
+    box-sizing: border-box;
+    transition: all .3s linear;
+    margin: 0;
+  }
+  body {
+    margin: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: url("../img/screen-bg.jpg") no-repeat center center fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    will-change: transform; /* Для лучшей производительности */
+    transition: transform 0.1s ease-out; /* Опционально: плавный переход */
+  }
+  body::before {
+    z-index: 1;
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    filter: blur(4px);
+    background: url("../img/screen-bg.jpg") no-repeat center center fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .parallelogram {
+    width: 450px;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(123,211,234,.8) 0%, rgba(126,161,254,.8) 100%);
+    transform: skew(10deg) translateX(-80px);
+    position: absolute;
+    overflow: hidden;
+    z-index: 1;
+  }
+  .character {
+    position: absolute;
+    z-index: 100;
+    background-size: cover;
+    background-repeat: no-repeat;
+    bottom: -20px;
+    left: 0;
+    background-image: url("../img/franklin.png");
+    width: 600px;
+    height: 800px;
+    background-position: center;
+    will-change: transform; /* Добавьте это для лучшей производительности */
+    transition: transform 0.1s ease-out; /* Опционально: добавьте плавность */
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+    color: white;
+    z-index: 2;
+    position: relative;
+    width: 300px;
+  }
+  .auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: space-between;
+  }
+  .auth-buttons button {
+    background: none;
+    color: lightgray;
+    outline: none;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .auth-buttons button.active {
+    color: white;
+  }
+  form.auth {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin-top: 10px;
+  }
+  form.auth input {
+    padding: 15px;
+    background-color: rgba(0, 0, 0, .2);
+    width: 100%;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+
+  }
+  form.auth button {
+    padding: 15px;
+    width: 100%;
+    border: none;
+    outline: none;
+    background: linear-gradient(90deg, rgba(123,211,234,1) 0%, rgba(126,161,254,1) 100%);
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  form.auth button:hover {
+    opacity: .8;
+  }
