@@ -13,6 +13,17 @@ public class Main : Events.Script
         Events.OnPlayerCreateWaypoint += OnPlayerCreateWaypoint;
         Events.Add("closeBrowser", onCloseBrowserMessage);
         Events.Add("CEF:CLIENT::REGISTER_BUTTON_CLICKED", OnCefRegisterButtonClicked);
+        Events.Add("SERVER:CLIENT::REGISTER_BUTTON_CLICKER", OnCefRegisterButtonClicked);
+        Events.Add("SERVER:CLIENT::REGISTER_USER", onServerRegisterUser);
+    }
+
+    public void onServerRegisterUser(object[] args)
+    {
+        bool isExist = (bool)args[0];
+        if (isExist)
+            openedWindow.ExecuteJs("document.dispatchEvent(new Event('registerUserExists'))");
+        else
+            openedWindow.ExecuteJs("document.dispatchEvent(new Event('registerUserSuccess'))");
     }
 
     public void OnCefRegisterButtonClicked(object[] args)

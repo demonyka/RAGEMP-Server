@@ -7,6 +7,7 @@
         <title>CEF | REGISTER</title>
     </head>
     <body>
+        
         <div class="character"></div>
         <div class="parallelogram left"></div>
         <div class="parallelogram right"></div>
@@ -23,14 +24,49 @@
             </form>
             <form id="reg-form" class="auth" style="display: none;">
                 <input name="login" placeholder="Логин">
-                <input name="email" placeholder="Почта">
+                <input name="email" placeholder="Адрес электронной почты">
                 <input name="password" placeholder="Пароль" type="password">
                 <input name="password-confirmation" placeholder="Подтверждение пароля" type="password">
-                <button onclick="onRegisterButtonClick()" type="button">Зарегистрироваться</button>
+                <button id="register-submit" onclick="onRegisterButtonClick()" type="button">Зарегистрироваться</button>
             </form>
+        </div>
+        <div class="notify" id="notify-block">
+            <span class="icon error" id="notify-error-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+                    <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+                </svg>
+            </span>
+            <span class="icon success" id="notify-success-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+                    <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/>
+                </svg>
+            </span>
+            <p id="notify-message">Ошибка</p>
         </div>
         <script src="js/script.js"></script>
         <script>
+            let notifyTimer = null;
+            function setNotify(value, isSuccess) {
+                const notifySuccessIcon = document.getElementById('notify-success-icon');
+                const notifyErrorIcon = document.getElementById('notify-error-icon');
+                if (isSuccess) {
+                    notifyErrorIcon.style.display = 'none';
+                    notifySuccessIcon.style.display = 'flex';
+                } else {
+                    notifySuccessIcon.style.display = 'none';
+                    notifyErrorIcon.style.display = 'flex';
+                }
+
+                const notifyBlock = document.getElementById('notify-block');
+                const notifyContent = document.getElementById('notify-message');
+                notifyContent.textContent = value;
+                notifyBlock.style.opacity = 1;
+                notifyTimer = setTimeout(() => {
+                    notifyBlock.style.opacity = 0;
+                    clearTimeout(notifyTimer);
+                }, 3000);
+                
+            }
             document.getElementById('login-btn').addEventListener('click', function() {
                 document.getElementById('login-form').style.display = 'flex';
                 document.getElementById('reg-form').style.display = 'none';
@@ -55,19 +91,76 @@
                 const passwordConfirmationValue = form.elements['password-confirmation'].value;
                 const emailValue = form.elements['email'].value;
 
-                const loginPattern = /^[a-zA-Z0-9]{4,24}$/;
-                if(!loginValue.match(loginPattern)) return;
+                const loginPattern = /^[a-zA-Z0-9]{0,}$/;
+                if(!loginValue.match(loginPattern)) {
+                    setNotify('Логин может состоять только из латинский символов и цифр', false);
+                    return;
+                }
+                if(loginValue.length < 4 || loginValue.length > 24) {
+                    setNotify('Длина логина не может быть менее 4 или более 24 символов', false);
+                    return;
+                } 
 
-                const passwordPattern = /^[a-zA-Z0-9]{6,64}$/;
-                if(!passwordValue.match(passwordPattern)) return;
+                const passwordPattern = /^[a-zA-Z0-9]{0,}$/;
+                if(!passwordValue.match(passwordPattern)) {
+                    setNotify('Пароль может состоять только из латинский символов и цифр', false);
+                    return;
+                }
 
-                if(passwordValue !== passwordConfirmationValue) return;
+                if(passwordValue.length < 6 || passwordValue.length > 64) {
+                    setNotify('Длина пароля не может быть менее 6 или более 64 символов', false);
+                    return;
+                }
 
-                // const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
-                // if(!emailValue.match(emailPattern)) return;
+                if(passwordValue !== passwordConfirmationValue) {
+                    setNotify('Пароли не совпадают', false);
+                    return;
+                }
+
+                const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{0,}$/;
+                if(!emailValue.match(emailPattern)) {
+                    setNotify('Некорректный адрес электронной почты', false);
+                    return;
+                }
+                
+                const registerButton = document.getElementById('register-submit');
+                registerButton.textContent = 'ЗАГРУЗКА';
+                registerButton.disabled = true;
 
                 mp.trigger('CEF:CLIENT::REGISTER_BUTTON_CLICKED', loginValue, passwordValue, emailValue);
             }
+            document.addEventListener('mousemove', function(e) {
+                const character = document.querySelector('.character');
+                const { clientX: mouseX, clientY: mouseY } = e;
+                
+                const { innerWidth: windowWidth, innerHeight: windowHeight } = window;
+                const { offsetWidth: charWidth, offsetHeight: charHeight } = character;
+
+                const charCenterX = charWidth / 2;
+                const charCenterY = charHeight / 2;
+                const windowCenterX = windowWidth / 2;
+                const windowCenterY = windowHeight / 2;
+                
+                const offsetX = (mouseX - windowCenterX) / windowCenterX * 5;
+                
+                character.style.transform = `translateX(${offsetX}px)`;
+            });
+            document.addEventListener('registerUserExists', function(e) {
+                setNotify('Пользователь с таким логином или почтой уже существует', false);
+                const registerButton = document.getElementById('register-submit');
+                registerButton.textContent = 'Зарегистрироваться';
+                registerButton.disabled = false;
+            });
+            document.addEventListener('registerUserSuccess', function(e) {
+                setNotify('Пользователь успешно зарегистрирован', true);
+                const registerButton = document.getElementById('register-submit');
+                registerButton.textContent = 'Зарегистрироваться';
+                registerButton.disabled = false;
+                document.getElementById('login-form').style.display = 'flex';
+                document.getElementById('reg-form').style.display = 'none';
+                this.classList.add('active');
+                document.getElementById('reg-btn').classList.remove('active');
+            });
         </script>
     </body>
 </html>

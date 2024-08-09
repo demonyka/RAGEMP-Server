@@ -13,14 +13,18 @@ public class RemoteEvents : Script
     [RemoteEvent("CLIENT:SERVER::REGISTER_BUTTON_CLICKED")]
     public async void OnCefRegisterButtonClicked(Player player, string login, string password, string email) 
     {
-        string selectQuery = "SELECT * FROM users WHERE login = @login";
+        string selectQuery = "SELECT * FROM users WHERE login = @login OR email = @email";
         MySqlCommand selectCommand = new MySqlCommand(selectQuery);
         selectCommand.Parameters.AddWithValue("@login", login);
+        selectCommand.Parameters.AddWithValue("@email", email);
 
         DataTable table = await MySQL.QueryReadAsync(selectCommand);
         if (table.Rows.Count > 0)
         {
-            NAPI.Util.ConsoleOutput("Логин занят");
+            NAPI.Task.Run(() =>
+            {
+                NAPI.ClientEvent.TriggerClientEvent(player, "SERVER:CLIENT::REGISTER_USER", false);
+            });
         }
         else
         {
@@ -30,6 +34,10 @@ public class RemoteEvents : Script
             insertCommand.Parameters.AddWithValue("@password", password);
             insertCommand.Parameters.AddWithValue("@email", email);
             MySQL.Query(insertCommand);
+            NAPI.Task.Run(() =>
+            {
+                NAPI.ClientEvent.TriggerClientEvent(player, "SERVER:CLIENT::REGISTER_USER", true);
+            });
         }
     }
 }
