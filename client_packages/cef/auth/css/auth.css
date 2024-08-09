@@ -43,19 +43,19 @@
     background-repeat: no-repeat;
   }
   .parallelogram {
-    width: 450px;
-    height: 100%;
+    width: 550px;
+    height: 120vh;
     background: linear-gradient(180deg, rgba(123,211,234,.8) 0%, rgba(126,161,254,.8) 100%);
-    transform: skew(10deg) translateX(-80px);
+    transform: skew(10deg) translate(-80px, -10vh);
     position: absolute;
     overflow: hidden;
     z-index: 1;
   }
   .parallelogram.left {
-    left: 0;
+    left: -10%;
   }
   .parallelogram.right {
-    right: -10%;
+    right: -15%;
   }
   .character {
     position: absolute;

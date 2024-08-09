@@ -40,4 +40,29 @@ public class RemoteEvents : Script
             });
         }
     }
+
+    [RemoteEvent("CLIENT:SERVER::LOGIN_BUTTON_CLICKED")]
+    public async void OnCefLoginButtonClicked(Player player, string login, string password)
+    {
+        string selectQuery = "SELECT * FROM users WHERE login = @login AND password = @password";
+        MySqlCommand selectCommand = new MySqlCommand(selectQuery);
+        selectCommand.Parameters.AddWithValue("@login", login);
+        selectCommand.Parameters.AddWithValue("@password", password);
+        DataTable table = await MySQL.QueryReadAsync(selectCommand);
+        if (table.Rows.Count > 0)
+        {
+            NAPI.Task.Run(() =>
+            {
+                NAPI.ClientEvent.TriggerClientEvent(player, "SERVER:CLIENT::LOGIN_USER", true);
+            });
+        }
+        else
+        {
+            NAPI.Task.Run(() =>
+            {
+                NAPI.ClientEvent.TriggerClientEvent(player, "SERVER:CLIENT::LOGIN_USER", false);
+            });
+        }
+        
+    }
 }

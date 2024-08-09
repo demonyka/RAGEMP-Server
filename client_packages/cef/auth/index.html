@@ -20,7 +20,7 @@
             <form id="login-form" class="auth" style="display: flex;">
                 <input name="login" placeholder="Логин">
                 <input name="password" placeholder="Пароль" type="password">
-                <button onclick="onLoginButtonClick()" type="button">Войти</button>
+                <button id="login-submit" onclick="onLoginButtonClick()" type="button">Войти</button>
             </form>
             <form id="reg-form" class="auth" style="display: none;">
                 <input name="login" placeholder="Логин">
@@ -43,7 +43,6 @@
             </span>
             <p id="notify-message">Ошибка</p>
         </div>
-        <script src="js/script.js"></script>
         <script>
             let notifyTimer = null;
             function setNotify(value, isSuccess) {
@@ -82,7 +81,32 @@
             });
 
             function onLoginButtonClick() {
-                mp.trigger('closeBrowser');
+                const form = document.getElementById('login-form');
+                const loginValue = form.elements['login'].value;
+                const passwordValue = form.elements['password'].value;
+                const loginPattern = /^[a-zA-Z0-9]{0,}$/;
+                if(!loginValue.match(loginPattern)) {
+                    setNotify('Логин может состоять только из латинский символов и цифр', false);
+                    return;
+                }
+                if(loginValue.length < 4 || loginValue.length > 24) {
+                    setNotify('Длина логина не может быть менее 4 или более 24 символов', false);
+                    return;
+                } 
+                const passwordPattern = /^[a-zA-Z0-9]{0,}$/;
+                if(!passwordValue.match(passwordPattern)) {
+                    setNotify('Пароль может состоять только из латинский символов и цифр', false);
+                    return;
+                }
+
+                if(passwordValue.length < 6 || passwordValue.length > 64) {
+                    setNotify('Длина пароля не может быть менее 6 или более 64 символов', false);
+                    return;
+                }
+                const loginButton = document.getElementById('login-submit');
+                loginButton.textContent = 'ЗАГРУЗКА';
+                loginButton.disabled = true;
+                mp.trigger('CEF:CLIENT::LOGIN_BUTTON_CLICKED', loginValue, passwordValue);
             }
             function onRegisterButtonClick() {
                 const form = document.getElementById('reg-form');
@@ -161,6 +185,12 @@
                 this.classList.add('active');
                 document.getElementById('reg-btn').classList.remove('active');
             });
+            document.addEventListener('loginUserFailed', function(e) {
+                setNotify('Неверный логин или пароль', false);
+                const loginButton = document.getElementById('login-submit');
+                loginButton.textContent = 'Войти';
+                loginButton.disabled = false;
+            })
         </script>
     </body>
 </html>
