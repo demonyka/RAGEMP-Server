@@ -1,5 +1,6 @@
 ﻿using GTANetworkAPI;
 using MySql.Data.MySqlClient;
+using System;
 using System.Data;
 
 public class RemoteEvents : Script
@@ -19,12 +20,13 @@ public class RemoteEvents : Script
         selectCommand.Parameters.AddWithValue("@email", email);
 
         DataTable table = await MySQL.QueryReadAsync(selectCommand);
+        NAPI.Util.ConsoleOutput($"{table.Rows.Count}");
         if (table.Rows.Count > 0)
         {
             NAPI.Task.Run(() =>
             {
                 NAPI.ClientEvent.TriggerClientEvent(player, "SERVER:CLIENT::REGISTER_USER", false);
-            }, 1000);
+            }, 500);
         }
         else
         {
@@ -51,18 +53,38 @@ public class RemoteEvents : Script
         DataTable table = await MySQL.QueryReadAsync(selectCommand);
         if (table.Rows.Count > 0)
         {
-            NAPI.Task.Run(() =>
+            int accountId = Convert.ToInt32(table.Rows[0]["id"]);
+            string usersQuery = "SELECT * FROM users WHERE account_id = @id";
+            MySqlCommand usersCommand = new MySqlCommand(usersQuery);
+            usersCommand.Parameters.AddWithValue("@id", accountId);
+            DataTable usersTable = await MySQL.QueryReadAsync(usersCommand);
+            if (usersTable.Rows.Count > 0)
             {
-                NAPI.ClientEvent.TriggerClientEvent(player, "SERVER:CLIENT::LOGIN_USER", true);
-            });
+                NAPI.Task.Run(() =>
+                {
+                    NAPI.ClientEvent.TriggerClientEvent(player, "SERVER:CLIENT::CHOOSE_PERSON");
+                    player.Position = new Vector3(-1851.2072, -1233.2225, 13.017269);
+                    player.Rotation = new Vector3(0, 0, -37.09287);
+                    player.Dimension = (uint)(player.Id + 1000);
+                });
+            }
+            else
+            {
+                NAPI.Task.Run(() =>
+                {
+                    NAPI.ClientEvent.TriggerClientEvent(player, "SERVER:CLIENT::CREATE_PERSON");
+                    player.Position = new Vector3(-1851.2072, -1233.2225, 13.017269);
+                    player.Rotation = new Vector3(0, 0, -37.09287);
+                    player.Dimension = (uint)(player.Id + 1000);
+                });
+            }
         }
         else
         {
             NAPI.Task.Run(() =>
             {
-                NAPI.ClientEvent.TriggerClientEvent(player, "SERVER:CLIENT::LOGIN_USER", false);
+                NAPI.ClientEvent.TriggerClientEvent(player, "SERVER:CLIENT::FAILED_USER_LOGIN");
             }, 1000);
         }
-        
     }
 }

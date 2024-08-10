@@ -68,8 +68,8 @@
     width: 600px;
     height: 800px;
     background-position: center;
-    will-change: transform; /* Добавьте это для лучшей производительности */
-    transition: transform 0.1s ease-out; /* Опционально: добавьте плавность */
+    will-change: transform;
+    transition: transform 0.1s ease-out;
   }
   .content {
     display: flex;

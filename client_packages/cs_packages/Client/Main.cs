@@ -1,10 +1,12 @@
 ﻿using RAGE;
+using RAGE.Elements;
 using RAGE.Game;
 using RAGE.Ui;
 
 public class Main : Events.Script
 {
     HtmlWindow openedWindow;
+    Camera currentCamera;
 
     public Main()
     {
@@ -16,31 +18,52 @@ public class Main : Events.Script
         Events.Add("CEF:CLIENT::LOGIN_BUTTON_CLICKED", OnCefLoginButtonClicked);
         Events.Add("SERVER:CLIENT::REGISTER_BUTTON_CLICKER", OnCefRegisterButtonClicked);
         Events.Add("SERVER:CLIENT::REGISTER_USER", OnServerRegisterUser);
-        Events.Add("SERVER:CLIENT::LOGIN_USER", OnServerLoginUser);
+        Events.Add("SERVER:CLIENT::FAILED_USER_LOGIN", OnServerFailedUserLogin);
+        Events.Add("SERVER:CLIENT::CREATE_PERSON", OnServerCreatePerson);
+        Events.Add("SERVER:CLIENT::CHOOSE_PERSON", OnServerChoosePerson);
+    }
+    public void OnServerChoosePerson(object[] args)
+    {
+        openedWindow.Destroy();
+        currentCamera = new Camera((ushort)Cam.CreateCameraWithParams(Misc.GetHashKey("DEFAULT_SCRIPTED_CAMERA"), -1849.8408f, -1231.6427f, 13.7f, 0, 0, 140.14017f, 20.0f, true, 2), 0);
+        Cam.PointCamAtCoord(currentCamera.Id, -1851.2072f, -1233.2225f, 13.7f);
+        Cam.SetCamActive(currentCamera.Id, true);
+        Cam.RenderScriptCams(true, false, 0, true, false, 0);
+
+        //openedWindow = new HtmlWindow("package://cef/create_character/index.html");
+        //openedWindow.Active = true;
+        Cursor.ShowCursor(true, true);
     }
 
-    public void OnServerLoginUser(object[] args)
+    public void OnServerCreatePerson(object[] args)
     {
-        bool isSuccess = (bool)args[0];
-        if (isSuccess)
-        {
-            openedWindow.Destroy();
-            Cursor.ShowCursor(false, false);
-            Chat.Output("Добро пожаловать");
-        }
-        else
-        {
-            openedWindow.ExecuteJs("document.dispatchEvent(new Event('loginUserFailed'))");
-        }
+        openedWindow.Destroy();
+        currentCamera = new Camera((ushort)Cam.CreateCameraWithParams(Misc.GetHashKey("DEFAULT_SCRIPTED_CAMERA"), -1849.8408f, -1231.6427f, 13.7f, 0, 0, 140.14017f, 20.0f, true, 2), 0);
+        Cam.PointCamAtCoord(currentCamera.Id, -1851.2072f, -1233.2225f, 13.7f);
+        Cam.SetCamActive(currentCamera.Id, true);
+        Cam.RenderScriptCams(true, false, 0, true, false, 0);
+
+        openedWindow = new HtmlWindow("package://cef/create_character/index.html");
+        openedWindow.Active = true;
+        Cursor.ShowCursor(true, true);
+    }
+
+    public void OnServerFailedUserLogin(object[] args)
+    {
+        openedWindow.ExecuteJs("document.dispatchEvent(new Event('loginUserFailed'))"); 
     }
 
     public void OnServerRegisterUser(object[] args)
     {
         bool isExist = (bool)args[0];
-        if (isExist)
+        if (!isExist)
+        {
             openedWindow.ExecuteJs("document.dispatchEvent(new Event('registerUserExists'))");
+        }
         else
+        {
             openedWindow.ExecuteJs("document.dispatchEvent(new Event('registerUserSuccess'))");
+        }
     }
 
     public void OnCefLoginButtonClicked(object[] args)
@@ -75,6 +98,8 @@ public class Main : Events.Script
         openedWindow = new HtmlWindow("package://cef/auth/index.html");
         openedWindow.Active = true;
         Cursor.ShowCursor(true, true);
+        Ui.DisplayRadar(false);
+        Chat.Show(false);
     }
 
     public void OnPlayerCreateWaypoint(Vector3 position)

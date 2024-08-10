@@ -152,7 +152,9 @@
                 registerButton.disabled = true;
 
                 mp.trigger('CEF:CLIENT::REGISTER_BUTTON_CLICKED', loginValue, passwordValue, emailValue);
-            }
+            };
+
+            
             document.addEventListener('mousemove', function(e) {
                 const character = document.querySelector('.character');
                 const { clientX: mouseX, clientY: mouseY } = e;
@@ -190,7 +192,7 @@
                 const loginButton = document.getElementById('login-submit');
                 loginButton.textContent = 'Войти';
                 loginButton.disabled = false;
-            })
+            });
         </script>
     </body>
 </html>

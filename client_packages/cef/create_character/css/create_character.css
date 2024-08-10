@@ -1,0 +1,142 @@
+  @font-face {
+    font-family: "Unbounded"; 
+    src: url("../fonts/Unbounded.ttf") format("truetype"); 
+    font-style: normal; 
+    font-weight: normal; 
+  } 
+  * {
+    font-family: 'Unbounded', sans-serif;
+    color: white;
+    box-sizing: border-box;
+    transition: all .3s linear;
+    margin: 0;
+  }
+  body {
+    margin: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* background: url("../img/screen-bg.jpg") no-repeat center center fixed; */
+    background-size: cover;
+    background-repeat: no-repeat;
+    will-change: transform; /* Для лучшей производительности */
+    transition: transform 0.1s ease-out; /* Опционально: плавный переход */
+  }
+  div.content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    position: relative;
+    z-index: 10;
+  }
+  div.left-block {
+    background: rgba(0, 0, 0, .8);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    width: 20%;
+  }
+  div.left-block h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 20px;
+  }
+  div.button-element {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    cursor: pointer;
+    width: 100%;
+    padding: 20px 40px;
+  }
+  div.button-element span {
+    font-weight: 300;
+  }
+  div.button-element svg {
+    min-width: 24px;
+    min-height: 24px;
+  }
+  div.button-element:hover {
+    background: rgba(255, 255, 255, .1);
+  }
+  .label-input {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  form.character-data {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+  form.character-data input {
+    padding: 15px;
+    background-color: rgba(255, 255, 255, .1);
+    width: 100%;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+  }
+  .sex-select {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .sex-select button {
+    width: 100%;
+    padding: 10px 0;
+    background-color: rgba(255, 255, 255, .1);
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+  }
+  .sex-select button:hover {
+    background-color: rgba(255, 255, 255, .15);;
+  }
+  .sex-select button.active {
+    pointer-events: none;
+  }
+  .sex-select button.male.active {
+    background: linear-gradient(45deg, rgba(123,211,234,1) 0%, rgba(126,161,254,1) 100%);
+  }
+  .sex-select button.female.active {
+    background: linear-gradient(45deg, rgba(251,63,193,1) 0%, rgba(252,70,138,1) 100%);
+  }
+  button.save {
+    position: fixed;
+    bottom: 80px;
+    padding: 20px 40px;
+    border-radius: 20px;
+    background: linear-gradient(45deg, rgba(123,211,234,1) 0%, rgba(126,161,254,1) 100%);
+    border: none;
+    outline: none;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    cursor: pointer;
+  }
+  button.save:hover {
+    opacity: .8;
+  }
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
