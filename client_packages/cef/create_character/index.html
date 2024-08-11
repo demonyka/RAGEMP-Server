@@ -59,17 +59,17 @@
                 </div>
             </div>
             <div class="center-block">
-                <button class="save">Сохранить</button>
+                <button id="submit" class="save">Сохранить</button>
             </div>
             <div class="left-block" style="padding: 20px 40px;">
-                <form class="character-data">
+                <form class="character-data" id="character-data-form">
                     <div class="label-input">
                         <label>Укажите имя</label>
-                        <input placeholder="John_Smith" id="character-name">
+                        <input placeholder="John_Smith" id="character-name" name="name">
                     </div>
                     <div class="label-input">
                         <label>Укажите возраст</label>
-                        <input type="number" placeholder="21">
+                        <input type="number" placeholder="21" name="age">
                     </div>
                     <div class="label-input">
                         <label>Выберите пол</label>
@@ -89,16 +89,91 @@
                 </form>
             </div>
         </div>
+
+        <div class="notify" id="notify-block">
+            <span class="icon error" id="notify-error-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+                    <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+                </svg>
+            </span>
+            <span class="icon success" id="notify-success-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+                    <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/>
+                </svg>
+            </span>
+            <p id="notify-message">Ошибка</p>
+        </div>
         
         <script>
             let selectedSex = 0;
+            let notifyTimer = null;
             const nameInput = document.getElementById("character-name");
+            function setNotify(value, isSuccess) {
+                const notifySuccessIcon = document.getElementById('notify-success-icon');
+                const notifyErrorIcon = document.getElementById('notify-error-icon');
+                if (isSuccess) {
+                    notifyErrorIcon.style.display = 'none';
+                    notifySuccessIcon.style.display = 'flex';
+                } else {
+                    notifySuccessIcon.style.display = 'none';
+                    notifyErrorIcon.style.display = 'flex';
+                }
+
+                const notifyBlock = document.getElementById('notify-block');
+                const notifyContent = document.getElementById('notify-message');
+                notifyContent.textContent = value;
+                notifyBlock.style.opacity = 1;
+                notifyTimer = setTimeout(() => {
+                    notifyBlock.style.opacity = 0;
+                    clearTimeout(notifyTimer);
+                }, 3000);
+                
+            }
+            document.getElementById('submit').addEventListener('click', function() {
+                const dataCharacterForm = document.getElementById('character-data-form');
+                const nameValue = dataCharacterForm.elements['name'].value;
+                const namePattern = /^[A-Z][a-z]*_[A-Z][a-z]*([A-Z][a-z]*)?$/;
+                if(!nameValue.match(namePattern)) {
+                    setNotify("Имя должно быть формата Имя_Фамилия", false);
+                    return;
+                }
+
+                if(nameValue.length < 4 || nameValue.length > 64) {
+                    setNotify("Длина имени не может быть менее 4 или более 64 символов", false);
+                    return;
+                }
+
+                const ageValue = dataCharacterForm.elements['age'].value;
+                const agePattern = /^-?\d+(\.\d+)?$/;
+                if(!ageValue.match(agePattern)) {
+                    setNotify("Некорректный возраст", false);
+                    return;
+                }
+                if(ageValue < 18 || ageValue > 60) {
+                    setNotify("Возраст не может быть менее 18 или более 60 лет");
+                    return;
+                }
+
+                const registerButton = document.getElementById('submit');
+                registerButton.textContent = 'ЗАГРУЗКА';
+                registerButton.disabled = true;
+
+                mp.trigger("CEF:CLIENT::PERSON_CREATE_BUTTON_CLICKED", nameValue, ageValue, selectedSex);
+                
+            });
+            document.addEventListener('personExist', function(e) {
+                setNotify("Персонаж с таким именем уже существует", false);
+                const registerButton = document.getElementById('submit');
+                registerButton.textContent = 'Сохранить';
+                registerButton.disabled = false;
+            });
             document.getElementById('sex-male').addEventListener('click', function() {
                 const maleButton = document.getElementById('sex-male');
                 maleButton.classList.add('active');
                 const femaleButton = document.getElementById('sex-female');
                 femaleButton.classList.remove('active');
                 nameInput.placeholder = "John_Smith";
+                selectedSex = 0;
             });
             document.getElementById('sex-female').addEventListener('click', function() {
                 const maleButton = document.getElementById('sex-male');
@@ -106,6 +181,7 @@
                 const femaleButton = document.getElementById('sex-female');
                 femaleButton.classList.add('active');
                 nameInput.placeholder = "Mary_Smith";
+                selectedSex = 1;
             });
         </script>
     </body>

@@ -20,7 +20,6 @@ public class RemoteEvents : Script
         selectCommand.Parameters.AddWithValue("@email", email);
 
         DataTable table = await MySQL.QueryReadAsync(selectCommand);
-        NAPI.Util.ConsoleOutput($"{table.Rows.Count}");
         if (table.Rows.Count > 0)
         {
             NAPI.Task.Run(() =>
@@ -54,6 +53,7 @@ public class RemoteEvents : Script
         if (table.Rows.Count > 0)
         {
             int accountId = Convert.ToInt32(table.Rows[0]["id"]);
+            player.SetData("account_id", accountId);
             string usersQuery = "SELECT * FROM users WHERE account_id = @id";
             MySqlCommand usersCommand = new MySqlCommand(usersQuery);
             usersCommand.Parameters.AddWithValue("@id", accountId);
@@ -85,6 +85,46 @@ public class RemoteEvents : Script
             {
                 NAPI.ClientEvent.TriggerClientEvent(player, "SERVER:CLIENT::FAILED_USER_LOGIN");
             }, 1000);
+        }
+    }
+
+    [RemoteEvent("CLIENT:SERVER:PERSON_CREATE_BUTTON_CLICKED")]
+    public async void OnCefPersonCreateButtonClicked(Player player, string name, string age, string sex)
+    {
+        if (player.HasData("account_id"))
+        {
+            string selectQuery = "SELECT * FROM users WHERE name = @name";
+            MySqlCommand selectCommand = new MySqlCommand(selectQuery);
+            selectCommand.Parameters.AddWithValue("@name", name);
+            DataTable table = await MySQL.QueryReadAsync(selectCommand);
+            if (table.Rows.Count > 0)
+            {
+                NAPI.Task.Run(() =>
+                {
+                    NAPI.ClientEvent.TriggerClientEvent(player, "SERVER:CLIENT::CREATE_PERSON_EXIST");
+                }, 500);
+            }
+            else
+            {
+                NAPI.Task.Run(() =>
+                {
+                    int accountId = player.GetData<int>("account_id");
+                    string updateQuery = "INSERT INTO `users`(`account_id`, `name`, `age`, `sex`) VALUES (@account_id, @name, @age, @sex)";
+                    MySqlCommand updateCommand = new MySqlCommand(updateQuery);
+
+                    updateCommand.Parameters.AddWithValue("@account_id", accountId);
+                    updateCommand.Parameters.AddWithValue("@name", name);
+                    updateCommand.Parameters.AddWithValue("@age", age);
+                    updateCommand.Parameters.AddWithValue("@sex", sex);
+
+                    MySQL.Query(updateCommand);
+
+                    NAPI.Task.Run(() =>
+                    {
+                        NAPI.ClientEvent.TriggerClientEvent(player, "SERVER:CLIENT::PERSON_CREATED");
+                    });
+                });
+            }
         }
     }
 }
