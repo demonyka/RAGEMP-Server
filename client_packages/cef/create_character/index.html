@@ -105,7 +105,7 @@
         </div>
         
         <script>
-            let selectedSex = 0;
+            let selectedSex = 1;
             let notifyTimer = null;
             const nameInput = document.getElementById("character-name");
             function setNotify(value, isSuccess) {
@@ -173,7 +173,8 @@
                 const femaleButton = document.getElementById('sex-female');
                 femaleButton.classList.remove('active');
                 nameInput.placeholder = "John_Smith";
-                selectedSex = 0;
+                selectedSex = 1;
+                mp.trigger("CEF:CLIENT::PERSON_CREATE_SEX_SWITCH_BUTTON_CLICKED", selectedSex);
             });
             document.getElementById('sex-female').addEventListener('click', function() {
                 const maleButton = document.getElementById('sex-male');
@@ -181,7 +182,8 @@
                 const femaleButton = document.getElementById('sex-female');
                 femaleButton.classList.add('active');
                 nameInput.placeholder = "Mary_Smith";
-                selectedSex = 1;
+                selectedSex = 0;
+                mp.trigger("CEF:CLIENT::PERSON_CREATE_SEX_SWITCH_BUTTON_CLICKED", selectedSex);
             });
         </script>
     </body>
